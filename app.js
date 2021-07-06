@@ -1,3 +1,6 @@
+// 6 exercisee assinc 36:27
+
+
 // // Prommise
 // function getRecipeList(){
 //     const url = 'http://localhost:3030/jsonstore/cookbook/recipes';
