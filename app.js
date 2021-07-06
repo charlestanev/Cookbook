@@ -29,20 +29,38 @@ async function getRecipeList() {
 
     try {
         const response = await fetch(url);
+
+        if (response.ok == false) {
+            throw new Error(response.statusText);
+        }
+
         const recipes = await response.json();
-        main.innerHTML = "";
-        Object.values(recipes).forEach((r) => {
-            const result = e(
-                "article",
-                { className: "preview" },
-                e("div", { className: "title" }, e("h2", {}, r.name)),
-                e("div", { className: "small" }, e("img", { src: r.img }))
-            );
-            main.appendChild(result);
-        });
+        main.innerHTML = '';
+        Object.values(recipes).map(createPreview).forEach(r => main.appendChild(r));
+
     } catch (error) {
         alert(error.message);
     }
+}
+
+function createPreview(recipe){
+    const result = e('article',
+        { className: 'preview' },
+        e('div', { className: 'title' }, e('h2', {}, recipe.name)),
+        e('div', { className: 'small' }, e('img', { src: recipe.img }))
+    )
+
+    result.addEventListener('click', () => getRecipeDetails(recipe._id));
+
+    return result;
+}
+
+async function getRecipeDetails(id){
+    const url = 'http://localhost:3030/jsonstore/cookbook/details/' + id;
+
+    const response = await fetch(url);
+    const data = await response.json();
+    console.log(data);
 }
 
 window.addEventListener("load", () => {
