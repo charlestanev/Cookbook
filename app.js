@@ -1,29 +1,3 @@
-// 6 exercisee assinc 36:27
-
-
-// // Prommise
-// function getRecipeList(){
-//     const url = 'http://localhost:3030/jsonstore/cookbook/recipes';
-
-//     const main = document.querySelector('main');
-
-//     fetch(url)
-//     .then(response => response.json())
-//     .then(recipes => {
-//         main.innerHTML = '';
-//         Object.values(recipes).forEach(r => {
-//             const result = e('article', { className: 'preview' },
-//                 e('div', { className: 'title' }, e('h2', {}, r.name)),
-//                 e('div', { className: 'small' }, e('img', { src: r.img }))
-//             );
-//             main.appendChild(result);
-//         });
-//     })
-//     .catch(error => {
-//         alert(error.message);
-//     });
-// }
-
 // Await/Fetch
 async function getRecipeList() {
     const url = "http://localhost:3030/jsonstore/cookbook/recipes";
